@@ -151,6 +151,11 @@ $.fn.ajaxSubmit = function(options) {
         options.extraData = options.data;
         qx = $.param(options.data, traditional);
     }
+    if (options.files) {
+        for (var filename in options.files) {
+            a.push({name: filename, value: options.files[filename], type: 'file'});
+        }
+    }
 
     // give pre-submit callback an opportunity to abort the submit
     if (options.beforeSubmit && options.beforeSubmit(a, this, options) === false) {
@@ -226,7 +231,7 @@ $.fn.ajaxSubmit = function(options) {
     // https://github.com/malsup/form/commit/588306aedba1de01388032d5f42a60159eea9228#commitcomment-2180219
     var fileInputs = $('input[type=file]:enabled', this).filter(function() { return $(this).val() !== ''; });
 
-    var hasFileInputs = fileInputs.length > 0;
+    var hasFileInputs = fileInputs.length > 0 || !!options.files;
     var mp = 'multipart/form-data';
     var multipart = ($form.attr('enctype') == mp || $form.attr('encoding') == mp);
 

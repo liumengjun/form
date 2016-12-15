@@ -81,6 +81,13 @@ An object containing extra data that should be submitted along with the form.
 data: { key1: 'value1', key2: 'value2' }
 ````
 
+###files
+An object containing extra files that should be uploaded along with the form.
+
+````javascript
+files: { fKey1: windowFileObj1, fKey2: new File([bytearray],'filename2') }
+````
+
 ###dataType
 Expected data type of the response. One of: null, 'xml', 'script', or 'json'. The dataType option provides a means for specifying how the server response should be handled. This maps directly to jQuery's dataType method. The following values are supported:
 
